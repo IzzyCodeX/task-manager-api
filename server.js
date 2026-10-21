@@ -26,6 +26,11 @@ app.post('/tasks', (req, res) => {
     res.status(201).json(newTask);
 });
 
+app.put('/tasks/:id', (req, res) => {
+    const taskId = req.params.id
+    const taskToUpdate = tasks.find(task => task.id === Number(taskId))
+    
+})
 app.listen(port, () => { 
     console.log("Server is running..."); 
 });
