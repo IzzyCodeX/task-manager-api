@@ -16,19 +16,19 @@ app.get('/tasks', (req, res) => {
 })
 
 // The route for fetching a particular task
-app.get('/task/:id', (req, res) => {
+app.get('/tasks/:id', (req, res) => {
     //fetching the id
     const taskId = req.params.id;
     //using .find() to get the task from the array
-    const foundTask = tasks.find(task => tasks.id === Number(taskId));
+    const foundTask = tasks.find(task => task.id === Number(taskId));
 
     /* an if/else function that returns a 404 status code if the task id isn't found
     and returns the foundTask variable if the task exists */
     if(!foundTask){
         return res.status(404).json({ error: "Task not found" });
-    } else (
+    } else {
         res.json(foundTask)
-    )
+    }
 })
 
 
