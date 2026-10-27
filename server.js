@@ -31,6 +31,23 @@ app.get('/tasks/:id', (req, res) => {
     }
 })
 
+// A delete route for deleting tasks
+app.delete('/tasks/:id', (req, res) => {
+    const taskId = req.params.id
+
+    //Chcking if the task exits
+    const taskToDelete = tasks.find(task => task.id === Number(taskId));
+
+    if(!taskToDelete){
+       return res.status(404).json({error: "Task not found"})
+    }
+
+    /*Filter all the task except the one to be deleted into a new array assigned
+    back to the tasks array*/
+    tasks = tasks.filter(task => task.id !== Number(taskId));
+
+    res.send("Task deleted");
+})
 
 
 
